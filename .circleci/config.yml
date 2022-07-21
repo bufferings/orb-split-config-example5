@@ -1,0 +1,16 @@
+version: 2.1
+
+setup: true
+
+orbs:
+  split-config: bufferings/split-config@0.0.7
+
+workflows:
+  generate-config:
+    jobs:
+      - split-config/generate-config:
+          config-list-path: .circleci/config-list
+          fixed-config-paths: |
+            ./service1/.circleci/config.yml
+            ./service2/.circleci/config.yml
+          find-config-regex: \./service3/\.circleci/configs/.*\.yml
